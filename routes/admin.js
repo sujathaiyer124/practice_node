@@ -1,8 +1,16 @@
+const path=require('path');
+
 const express = require('express');
 
-const app = express();
+const routes=express.Router();
 
-app.get('/user',(res, req, next) => {
-    res.send('</h1>Hello yhis is practiice file </h1>');
+routes.get('/add-product', (req, res, next) => {
+    res.sendFile(path.join(__dirname,'../','views','add-product.html'));
 });
-app.listen(3000);
+
+routes.post('/add-product', (req, res, next) => {
+    console.log(req.body);
+    res.redirect('/users');
+});
+
+module.exports=routes;
